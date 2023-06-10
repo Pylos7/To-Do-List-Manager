@@ -1,0 +1,15 @@
+Set Project Virtual Environment
+______________________________
+
+cd Desktop
+py -3 -m venv "To-Do List Manager"
+cd "To-Do List Manager"
+Scripts\activate
+
+
+Install Required Libraries
+_____________________________
+
+pip install Flask SQLAlchemy WTForms flask-login Flask-Migrate
+
+
