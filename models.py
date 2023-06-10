@@ -7,7 +7,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
 
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, primary_key=True, autoincrement="auto")
     username = Column(String)
     email = Column(String)
     password = Column(String)
@@ -19,7 +19,7 @@ class User(Base):
 class Task(Base):
     __tablename__ = 'tasks'
     
-    task_id = Column(Integer, primary_key=True)
+    task_id = Column(Integer, primary_key=True, autoincrement="auto")
     task_name = Column(String)
     priority = Column(Integer, ForeignKey('priorities.priority_id'))
     status = Column(String)
