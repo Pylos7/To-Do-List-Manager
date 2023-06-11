@@ -11,7 +11,7 @@ from models import User, Task, DueDate, Priority
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secrets.token_hex(16)  # Set a secret key for session encryption
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db'  # Set the database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list_manager_database.db'  # Set the database URI
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
