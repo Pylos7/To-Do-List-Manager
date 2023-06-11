@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    
+    <form method="POST" action="{{ url_for('home') }}">
+        {{ form.csrf_token }}
+        {{ form.task_name.label }}: {{ form.task_name }}<br>
+        {{ form.priority.label }}: {{ form.priority }}<br>
+        {{ form.status.label }}: {{ form.status }}<br>
+        {{ form.notes.label }}: {{ form.notes }}<br>
+        {{ form.submit }}
+    </form>
+    
+    <h2>Tasks:</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.task_name }} (Priority: {{ task.priority }}, Status: {{ task.status }})
+            <a href="{{ url_for('update_task', task_id=task.task_id) }}">Update</a>
+            <a href="{{ url_for('delete_task', task_id=task.task_id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
