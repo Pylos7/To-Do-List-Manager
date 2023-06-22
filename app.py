@@ -12,10 +12,13 @@ from models import User, Task, DueDate, Priority
 
 app = Flask(__name__)
 
-login_manager = LoginManager()
+app.config['SECRET_KEY'] = secrets.token_hex(16)  # Set a secret key for session encryption
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list_manager_database.db'  # Set the database URI
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+login_manager = LoginManager(app)
 
-login_manager.init_app(app)
-
+# Create the User loader function
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
@@ -74,6 +77,8 @@ def delete_task(task_id):
     
     return redirect(url_for('home'))
 
+login_manager.init_app(app)
+
 # Create the Task Form
 class TaskForm(FlaskForm):
     task_name = StringField('Task Name', validators=[DataRequired()])
@@ -81,13 +86,6 @@ class TaskForm(FlaskForm):
     status = StringField('Status', validators=[DataRequired()])
     notes = StringField('Notes')
     submit = SubmitField('Add Task')
-
-
-app.config['SECRET_KEY'] = secrets.token_hex(16)  # Set a secret key for session encryption
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list_manager_database.db'  # Set the database URI
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-login_manager = LoginManager(app)
 
 
 if __name__ == '__main__':

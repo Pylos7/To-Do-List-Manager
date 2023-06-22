@@ -20,3 +20,4 @@ _____________________________
 pip install Flask SQLAlchemy WTForms flask-login Flask-Migrate
 
 
+Test

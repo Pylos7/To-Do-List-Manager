@@ -219,6 +219,10 @@ deactivate -nondestructive
 # that there is an activated venv.
 $env:VIRTUAL_ENV = $VenvDir
 
+$env:FLASK_APP = "app"
+$env:FLASK_DEBUG = "1"
+
+
 
 
 if (-not $Env:VIRTUAL_ENV_DISABLE_PROMPT) {
